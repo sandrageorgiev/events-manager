@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('longitude');
             $table->string('latitude');
             $table->enum('category', \App\Category::values());
-            $table->foreignId('creator_id')->constrained('users'); // Foreign key for the creator (User)
+            $table->foreignId('creator_id')->nullable()->constrained('app_users'); // Foreign key for the creator (User)
             $table->date('date_start');
             $table->date('date_finish');
             $table->time('time_start');

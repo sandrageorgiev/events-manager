@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     protected $fillable = ['name'];
+    protected $primaryKey = 'name';
+    protected $keyType = 'string';
 
     // Define the relationship with Event (Many-to-Many)
     public function events()

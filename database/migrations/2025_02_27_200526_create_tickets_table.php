@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); // Auto-increment primary key
             $table->double('price');
             $table->foreignId('event_id')->constrained('events')->onDelete('cascade'); // Foreign key referencing events
-            $table->foreignId('buyer_id')->constrained('users')->onDelete('cascade'); // Foreign key referencing users
+            $table->foreignId('buyer_id')->constrained('app_users')->onDelete('cascade'); // Foreign key referencing users
             $table->timestamps();
         });
     }

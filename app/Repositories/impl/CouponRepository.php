@@ -1,7 +1,8 @@
 <?php
-namespace App\Repositories;
+namespace App\Repositories\impl;
 
 use App\Models\Coupon;
+use App\Repositories\CouponRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 class CouponRepository implements CouponRepositoryInterface
