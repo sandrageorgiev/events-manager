@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\Tag;
 use App\Repositories\EventRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Log;
 
 class EventRepository implements EventRepositoryInterface
 {
@@ -23,17 +24,30 @@ class EventRepository implements EventRepositoryInterface
 
     public function create(array $data): Event
     {
+        Log::debug('Event Data:', $data); // Logs the content of $data
+
         // Ensure tags is an array
-        $tagsNames = is_array($data['tags']) ? $data['tags'] : explode(',', $data['tags']);
+//        $tagsNames = is_array($data['tags']) ? $data['tags'] : explode(',', $data['tags']);
+//        $tags = collect();
+//        $tagsNames = isset($data['tags']) && is_array($data['tags']) ? $data['tags'] : (isset($data['tags']) ? explode(',', $data['tags']) : []);
+//        $tags = collect($tagsNames);
+
         $tags = collect();
 
-        foreach ($tagsNames as $tagName) {
-            $tagName = trim($tagName);
-            $tags->push(Tag::query()->firstOrCreate(['name' => $tagName]));
+        // Process tag names
+        if (isset($data['tags'])) {
+            $tagsNames = is_array($data['tags']) ? $data['tags'] : explode(',', $data['tags']);
+
+            foreach ($tagsNames as $tagName) {
+                $tagName = trim($tagName);
+                $tags->push(Tag::query()->firstOrCreate(['name' => $tagName]));
+            }
         }
 
+
+
         $event = Event::query()->create([
-            'name' => $data['name'],
+            'name' => $data["name"],
             'description' => $data['description'],
             'available_tickets' => $data['available_tickets'],
             'longitude' => $data['longitude'],

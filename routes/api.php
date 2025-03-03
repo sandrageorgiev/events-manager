@@ -25,4 +25,6 @@ Route::prefix('/events')->group(function () {
     Route::get('/{id}', [EventController::class, 'show']);
     Route::put('/{id}', [EventController::class, 'update']);
     Route::delete('/{id}/delete', [EventController::class, 'destroy']);
+    Route::post('/upload', [EventController::class, 'upload']);
 });
+
