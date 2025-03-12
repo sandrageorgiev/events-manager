@@ -7,4 +7,5 @@ use App\Models\Event;
 interface ImageRepositoryInterface
 {
     public function saveImage(Event $event, $file);
+    public function findAllByEvent($eventId);
 }

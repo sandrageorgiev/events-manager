@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('content_type');
             $table->binary('data'); // Use binary for storing byte arrays
-            $table->foreignId('event_id')->constrained('events'); // Foreign key constraint to events table
+            $table->foreignId('event_id')->constrained('events')->onDelete("cascade"); // Foreign key constraint to events table
             $table->timestamps();
         });
     }

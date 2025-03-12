@@ -31,9 +31,9 @@ return new class extends Migration
         });
 
         Schema::create('event_tag', function (Blueprint $table) {
-            $table->foreignId('event_id')->constrained('events');
+            $table->foreignId('event_id')->constrained('events')->onDelete("cascade");
             $table->string('tag_name'); // Use 'tag_name' instead of 'tag_id'
-            $table->foreign('tag_name')->references('name')->on('tags'); // Reference 'name' in the 'tags' table
+            $table->foreign('tag_name')->references('name')->on('tags')->onDelete("cascade"); // Reference 'name' in the 'tags' table
             $table->primary(['event_id', 'tag_name']);
         });
     }

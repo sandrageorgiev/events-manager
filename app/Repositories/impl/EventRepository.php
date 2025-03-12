@@ -14,12 +14,12 @@ class EventRepository implements EventRepositoryInterface
 
     public function all(): Collection
     {
-        return Event::with(['creator', 'images', 'tags'])->get();
+        return Event::with(['creator', 'tags'])->get();
     }
 
     public function find(int $id): Event
     {
-        return Event::with(['creator', 'images', 'tags'])->find($id);
+        return Event::with(['creator', 'tags'])->findOrFail($id);
     }
 
     public function create(array $data): Event
@@ -87,7 +87,7 @@ class EventRepository implements EventRepositoryInterface
         $event->update([
             'name' => $data['name'],
             'description' => $data['description'],
-            'available_tickets' => $data['max_people'],
+            'available_tickets' => $data['available_tickets'],
             'longitude' => $data['longitude'],
             'latitude' => $data['latitude'],
             'date_finish' => $data['date_finish'],
