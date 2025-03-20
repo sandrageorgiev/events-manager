@@ -215,4 +215,17 @@ class EventController extends Controller
         }
     }
 
+
+    //publish
+    public function publishTickets(Request $request)
+    {
+        $event = $this->eventRepository->publishTickets(
+            $request->eventId,
+            $request->price,
+            $request->numberOfTickets
+        );
+
+        return response()->json($event);
+    }
+
 }

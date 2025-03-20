@@ -115,4 +115,15 @@ class EventRepository implements EventRepositoryInterface
         // Delete the event
         return $event->delete();
     }
+
+
+    public function publishTickets($eventId, $price, $numberOfTickets)
+    {
+        $event = Event::query()->findOrFail($eventId);
+        $event->available_tickets += $numberOfTickets;
+        $event->price = $price;
+        $event->save();
+
+        return $event;
+    }
 }

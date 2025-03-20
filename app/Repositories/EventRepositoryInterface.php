@@ -17,4 +17,6 @@ interface EventRepositoryInterface
     public function update(Event $event, array $data): Event;
 
     public function delete(Event $event): bool;
+
+    public function publishTickets($eventId, $price, $numberOfTickets);
 }
